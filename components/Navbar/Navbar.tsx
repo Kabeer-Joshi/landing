@@ -1,4 +1,8 @@
+'use client';
+
+import { NavbarContext } from '@/providers/NavbarContextProvider';
 import { HamburgerIcon } from '@chakra-ui/icons';
+import { Image } from '@chakra-ui/next-js';
 import {
 	Box,
 	Button,
@@ -8,15 +12,12 @@ import {
 	DrawerHeader,
 	DrawerOverlay,
 	Flex,
-	Image,
 	Text,
 	useDisclosure,
 } from '@chakra-ui/react';
-import React, { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useRouter } from 'next/navigation';
+import { useContext, useEffect, useState } from 'react';
 import logo from '../../assets/images/goreevalogo.jpeg';
-import { NavbarContext } from '../../context/NavbarContext';
-
 const menuData = [
 	{
 		name: 'Home',
@@ -46,10 +47,10 @@ const menuData = [
 
 const Navbar = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const navigate = useNavigate();
+	const router = useRouter();
 	const [tabIndex, setTabIndex] = useState('/');
 	const { navbarActiveLink, setNavbarActiveLink } = useContext(NavbarContext);
-	const location = useLocation();
+	const params = useParams();
 
 	useEffect(() => {
 		console.log(location.pathname);
@@ -71,7 +72,7 @@ const Navbar = () => {
 						cursor={'pointer'}
 						onClick={() => {
 							setNavbarActiveLink('/');
-							navigate('/');
+							router.push('/');
 						}}
 						display={{ base: 'none', md: 'flex' }}>
 						GOREEVA
@@ -106,7 +107,7 @@ const Navbar = () => {
 							cursor={'pointer'}
 							onClick={() => {
 								setNavbarActiveLink(item.path);
-								navigate(item.path);
+								router.push(item.path);
 							}}
 							color={navbarActiveLink === item.path ? 'brand.100' : 'black'}>
 							{item.name}
@@ -123,9 +124,9 @@ const Navbar = () => {
 						rounded={'full'}
 						backgroundColor={'brand.100'}
 						onClick={() => {
-							setTabIndex(3);
+							setTabIndex('3');
 							setNavbarActiveLink('/pricing');
-							navigate('/pricing');
+							router.push('/pricing');
 						}}
 						fontWeight={'bold'}
 						_hover={{ opacity: 0.6 }}
@@ -172,7 +173,7 @@ const Navbar = () => {
 								color={navbarActiveLink === item.path ? 'brand.100' : 'black'}
 								onClick={() => {
 									setNavbarActiveLink(item.path);
-									navigate(item.path);
+									router.push(item.path);
 									onClose();
 								}}>
 								{item.name}

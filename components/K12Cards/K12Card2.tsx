@@ -1,17 +1,26 @@
-import { Flex, Image, Heading, Text } from "@chakra-ui/react";
+import { Image } from '@chakra-ui/next-js';
+import { Flex } from '@chakra-ui/react';
 
-const K12Card2 = ({ title, description, image, points }) => {
-    return (
-        <Flex
-            flex={1}
-            direction={"column"}
-            gap={10}
-            justify={"center"}
-            px={{ base: 5 }}
-            // align={"start"}
-        >
-            <Image rounded={"2xl"} w={500} src={image} />
-            {/*
+type K12Card2Props = {
+	title: string;
+	description: string;
+	image: any;
+	points: string[];
+	inverted?: boolean;
+};
+
+const K12Card2 = ({ title, description, image, points }: K12Card2Props) => {
+	return (
+		<Flex
+			flex={1}
+			direction={'column'}
+			gap={10}
+			justify={'center'}
+			px={{ base: 5 }}
+			// align={"start"}
+		>
+			<Image alt="k12-card-2" rounded={'2xl'} w={500} src={image} />
+			{/*
               <Heading
                   fontSize={{ base: "2xl", md: "4xl" }}
                   textAlign={"center"}
@@ -24,7 +33,7 @@ const K12Card2 = ({ title, description, image, points }) => {
               </Text>
             */}
 
-            {/* <Text
+			{/* <Text
                 textUnderlineOffset={8}
                 fontSize={"lg"}
                 color={"brand.100"}
@@ -34,8 +43,8 @@ const K12Card2 = ({ title, description, image, points }) => {
                 {" "}
                 Learn More{" "}
             </Text> */}
-        </Flex>
-    );
+		</Flex>
+	);
 };
 
 export default K12Card2;

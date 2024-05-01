@@ -40,7 +40,7 @@ const K12MidSection = () => {
 					w={'full'}
 					gap={6}
 					px={{ base: 10, md: 0 }}>
-					<Image rounded={'lg'} w={500} src={K12MidImg} />
+					<Image alt="k-12-image" rounded={'lg'} w={500} src={K12MidImg} />
 				</Flex>
 			</Flex>
 			<Flex
@@ -57,7 +57,12 @@ const K12MidSection = () => {
 					w={'full'}
 					gap={6}
 					px={{ base: 10, md: 0 }}>
-					<Image rounded={'lg'} w={500} src={K12MidSectionData[5].image} />
+					<Image
+						alt="k-12-midsection-image"
+						rounded={'lg'}
+						w={500}
+						src={K12MidSectionData[5].image}
+					/>
 				</Flex>
 				<K12Card3 {...K12MidSectionData[5]} />
 			</Flex>

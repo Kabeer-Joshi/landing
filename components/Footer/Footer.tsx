@@ -1,6 +1,7 @@
 import { NavbarContext } from '@/providers/NavbarContextProvider';
 import { Link } from '@chakra-ui/next-js';
-import { Box, Button, Divider, Flex, Image, Text } from '@chakra-ui/react';
+import { Box, Button, Divider, Flex, Text } from '@chakra-ui/react';
+import { Image } from '@chakra-ui/next-js';
 import { useContext } from 'react';
 import { AiFillAndroid, AiFillApple, AiFillLinkedin } from 'react-icons/ai';
 import logo from '../../assets/images/goreevalogo.jpeg';

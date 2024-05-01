@@ -1,5 +1,7 @@
-import { useCallback, useState } from "react";
-import { init, send } from "@emailjs/browser";
+'use client';
+
+import { useCallback, useState } from 'react';
+import { init, send } from '@emailjs/browser';
 import {
 	Box,
 	Heading,
@@ -16,18 +18,18 @@ import {
 	Select,
 	useToast,
 	FormErrorMessage,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import { BsPerson } from "react-icons/bs";
-import { debounce } from "lodash";
-import validator from "validator";
-import { MdOutlineCabin, MdOutlineEmail, MdPhone } from "react-icons/md";
+import { BsPerson } from 'react-icons/bs';
+import { debounce } from 'lodash';
+import validator from 'validator';
+import { MdOutlineCabin, MdOutlineEmail, MdPhone } from 'react-icons/md';
 
-const PUBLIC_KEY = "zihhAyOhEKtFGRJAO";
+const PUBLIC_KEY = 'zihhAyOhEKtFGRJAO';
 init(PUBLIC_KEY);
 
-const SERVICE_ID = "service_99bsm7g";
-const TEMPLATE_ID = "template_2ze0s59";
+const SERVICE_ID = 'service_99bsm7g';
+const TEMPLATE_ID = 'template_2ze0s59';
 
 const Form = () => {
 	const toast = useToast();
@@ -36,90 +38,90 @@ const Form = () => {
 
 	// State for form inputs
 	const [formData, setFormData] = useState({
-		name: "",
-		email: "",
-		phone: "",
-		organizationType: "",
-		organizationName: "",
-		needDescription: "",
-		message: "",
+		name: '',
+		email: '',
+		phone: '',
+		organizationType: '',
+		organizationName: '',
+		needDescription: '',
+		message: '',
 	});
 	// State for form errors
 	const [formErrors, setFormErrors] = useState({
-		name: "",
-		email: "",
-		phone: "",
-		organizationType: "",
-		organizationName: "",
-		needDescription: "",
-		message: "",
+		name: '',
+		email: '',
+		phone: '',
+		organizationType: '',
+		organizationName: '',
+		needDescription: '',
+		message: '',
 	});
 
 	const resetForm = () => {
 		setFormData({
-			name: "",
-			email: "",
-			phone: "",
-			organizationType: "",
-			organizationName: "",
-			needDescription: "",
-			message: "",
+			name: '',
+			email: '',
+			phone: '',
+			organizationType: '',
+			organizationName: '',
+			needDescription: '',
+			message: '',
 		});
 		setFormErrors({
-			name: "",
-			email: "",
-			phone: "",
-			organizationType: "",
-			organizationName: "",
-			needDescription: "",
-			message: "",
+			name: '',
+			email: '',
+			phone: '',
+			organizationType: '',
+			organizationName: '',
+			needDescription: '',
+			message: '',
 		});
 	};
 
-	const validateSingleField = (name, value) => {
+	const validateSingleField = (name: any, value: any) => {
 		switch (name) {
-			case "name":
+			case 'name':
 				if (!validator.isLength(value, { min: 1 })) {
-					return "Name is required.";
+					return 'Name is required.';
 				}
 				break;
-			case "email":
+			case 'email':
 				if (!validator.isEmail(value)) {
-					return "Email is not valid.";
+					return 'Email is not valid.';
 				}
 				break;
-			case "phone":
+			case 'phone':
 				if (!validator.isMobilePhone(value)) {
-					return "Phone number is not valid.";
+					return 'Phone number is not valid.';
 				}
 				break;
-			case "organizationType":
+			case 'organizationType':
 				if (!validator.isLength(value, { min: 1 })) {
-					return "Organization type is required.";
+					return 'Organization type is required.';
 				}
 				break;
-			case "needDescription":
+			case 'needDescription':
 				if (!validator.isLength(value, { min: 1 })) {
-					return "Description is required.";
+					return 'Description is required.';
 				}
 				break;
-			case "organizationName":
+			case 'organizationName':
 				if (!validator.isLength(value, { min: 1 })) {
-					return "Organization name is required.";
+					return 'Organization name is required.';
 				}
 				break;
-			case "message":
+			case 'message':
 				if (!validator.isLength(value, { min: 1 })) {
-					return "Message is required.";
+					return 'Message is required.';
 				}
 				break;
 			default:
-				return "";
+				return '';
 		}
-		return "";
+		return '';
 	};
 
-	const handleChange = (e) => {
+	const handleChange = (e: any) => {
 		const { name, value } = e.target;
 		setFormData((prevState) => ({
 			...prevState,
@@ -157,11 +159,11 @@ const Form = () => {
 
 	const sentToDataBase = async (formData) => {
 		const response = await fetch(
-			"https://manageapi.goreeva.com/api/add-inquires/",
+			'https://manageapi.goreeva.com/api/add-inquires/',
 			{
-				method: "POST",
+				method: 'POST',
 				headers: {
-					"Content-Type": "application/json", // Set the content type to JSON
+					'Content-Type': 'application/json', // Set the content type to JSON
 				},
 
 				body: JSON.stringify({
@@ -182,50 +184,50 @@ const Form = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log("submitting");
+		console.log('submitting');
 		if (validateForm()) {
 			setSubmitting(true);
 			try {
 				const response = await send(SERVICE_ID, TEMPLATE_ID, formData);
 
-				console.log("Response", response);
+				console.log('Response', response);
 
 				if (response.status === 200) {
 					sentToDataBase(formData);
 					resetForm();
 					toast({
-						title: "Message Sent to Goreeva",
+						title: 'Message Sent to Goreeva',
 						description: "We've received your message.",
-						status: "success",
+						status: 'success',
 						duration: 2000,
 						isClosable: true,
-						position: "top",
+						position: 'top',
 					});
 				} else {
 					toast({
-						title: "Submission Failed",
-						description: "Something went wrong. Please try again later.",
-						status: "error",
+						title: 'Submission Failed',
+						description: 'Something went wrong. Please try again later.',
+						status: 'error',
 						duration: 2000,
 						isClosable: true,
-						position: "top",
+						position: 'top',
 					});
 				}
 			} catch (error) {
 				toast({
-					title: "Submission Failed",
-					description: "Something went wrong. Please try again later.",
-					status: "error",
+					title: 'Submission Failed',
+					description: 'Something went wrong. Please try again later.',
+					status: 'error',
 					duration: 2000,
 					isClosable: true,
-					position: "top",
+					position: 'top',
 				});
 			}
 		}
 		setSubmitting(false);
 	};
 
-	console.log("form");
+	console.log('form');
 
 	return (
 		<>
@@ -235,18 +237,16 @@ const Form = () => {
 				border="1px solid #E0F0FF"
 				color="#0B0E3F"
 				m={{ base: 4, md: 4, lg: 4 }}
-				p={{ base: 4, md: 6, lg: 8 }}
-			>
+				p={{ base: 4, md: 6, lg: 8 }}>
 				<Heading
-					fontSize={{ base: "2xl", md: "2xl" }}
-					color={"brand.100"}
-					mb={5}
-				>
+					fontSize={{ base: '2xl', md: '2xl' }}
+					color={'brand.100'}
+					mb={5}>
 					Contact Us
 				</Heading>
 				<VStack spacing={4}>
 					{/* Your Name Field */}
-					<FormControl id="name" isRequired isInvalid={formErrors.name}>
+					<FormControl id="name" isRequired isInvalid={!!formErrors.name}>
 						<FormLabel fontSize="md">Your Name</FormLabel>
 						<InputGroup>
 							<InputLeftElement pointerEvents="none" fontSize="md">
@@ -261,7 +261,7 @@ const Form = () => {
 								value={formData.name}
 								onChange={handleChange}
 								_focus={{
-									borderColor: "brand.100",
+									borderColor: 'brand.100',
 								}}
 							/>
 						</InputGroup>
@@ -270,7 +270,7 @@ const Form = () => {
 					{/* Email Field */}
 					<FormControl id="email" isRequired isInvalid={formErrors.email}>
 						<FormLabel fontSize="md">Email</FormLabel>
-						<InputGroup alignItems={"center"}>
+						<InputGroup alignItems={'center'}>
 							<InputLeftElement pointerEvents="none" fontSize="md">
 								<MdOutlineEmail color="gray.800" />
 							</InputLeftElement>
@@ -283,7 +283,7 @@ const Form = () => {
 								value={formData.email}
 								onChange={handleChange}
 								_focus={{
-									borderColor: "brand.100",
+									borderColor: 'brand.100',
 								}}
 							/>
 						</InputGroup>
@@ -308,7 +308,7 @@ const Form = () => {
 										value={formData.phone}
 										onChange={handleChange}
 										_focus={{
-											borderColor: "brand.100",
+											borderColor: 'brand.100',
 										}}
 									/>
 								</InputGroup>
@@ -319,8 +319,7 @@ const Form = () => {
 							<FormControl
 								id="organizationType"
 								isRequired
-								isInvalid={formErrors.organizationType}
-							>
+								isInvalid={!!formErrors.organizationType}>
 								<FormLabel fontSize="md">Organization Type</FormLabel>
 								<Select
 									size="md"
@@ -328,8 +327,7 @@ const Form = () => {
 									fontSize="md"
 									name="organizationType"
 									value={formData.organizationType}
-									onChange={handleChange}
-								>
+									onChange={handleChange}>
 									<option value="">Select</option>
 									<option value="higherEd">Higher Ed (College)</option>
 									<option value="k12">K12 (Schools)</option>
@@ -345,8 +343,7 @@ const Form = () => {
 					<FormControl
 						id="needDescription"
 						isRequired
-						isInvalid={formErrors.needDescription}
-					>
+						isInvalid={!!formErrors.needDescription}>
 						<FormLabel fontSize="md">
 							What is the best description of your need?
 						</FormLabel>
@@ -356,8 +353,7 @@ const Form = () => {
 							fontSize="md"
 							name="needDescription"
 							value={formData.needDescription}
-							onChange={handleChange}
-						>
+							onChange={handleChange}>
 							<option value="">Select</option>
 							<option value="training">Training</option>
 							<option value="inquiry">Inquiry</option>
@@ -370,10 +366,9 @@ const Form = () => {
 					<FormControl
 						id="organizationName"
 						isRequired
-						isInvalid={formErrors.organizationName}
-					>
+						isInvalid={!!formErrors.organizationName}>
 						<FormLabel fontSize="md">Organization Name</FormLabel>
-						<InputGroup alignItems={"center"}>
+						<InputGroup alignItems={'center'}>
 							<InputLeftElement pointerEvents="none" fontSize="md">
 								<MdOutlineCabin color="gray.800" />
 							</InputLeftElement>
@@ -386,7 +381,7 @@ const Form = () => {
 								value={formData.organizationName}
 								onChange={handleChange}
 								_focus={{
-									borderColor: "brand.100",   
+									borderColor: 'brand.100',
 								}}
 							/>
 						</InputGroup>
@@ -394,7 +389,7 @@ const Form = () => {
 					</FormControl>
 
 					{/* Message Field */}
-					<FormControl id="message" isRequired isInvalid={formErrors.message}>
+					<FormControl id="message" isRequired isInvalid={!!formErrors.message}>
 						<FormLabel fontSize="md">Message</FormLabel>
 						<Textarea
 							size="md"
@@ -404,7 +399,7 @@ const Form = () => {
 							value={formData.message}
 							onChange={handleChange}
 							_focus={{
-								borderColor: "brand.100",
+								borderColor: 'brand.100',
 							}}
 							placeholder="Your message here..."
 						/>
@@ -425,9 +420,8 @@ const Form = () => {
 						h="40px"
 						w="150px"
 						fontSize="md"
-						isLoading={submitting}
-					>
-						{submitting ? "Submitting..." : "Submit"}
+						isLoading={submitting}>
+						{submitting ? 'Submitting...' : 'Submit'}
 					</Button>
 				</VStack>
 			</Box>

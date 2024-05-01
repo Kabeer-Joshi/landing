@@ -11,8 +11,6 @@ import {
 import { Image } from '@chakra-ui/next-js';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
-// import { demoCards } from "../../data/data";
-
 const responsive = {
 	desktop: {
 		breakpoint: { max: 3000, min: 1024 },
@@ -31,7 +29,7 @@ const responsive = {
 	},
 };
 
-const CustomLeftArrow = ({ onClick, ...rest }) => {
+const CustomLeftArrow = ({ onClick, ...rest }: { onClick: any }) => {
 	return (
 		<IconButton
 			as={ChevronLeftIcon}
@@ -48,7 +46,7 @@ const CustomLeftArrow = ({ onClick, ...rest }) => {
 	);
 };
 
-const CustomRightArrow = ({ onClick, ...rest }) => {
+const CustomRightArrow = ({ onClick, ...rest }: { onClick: any }) => {
 	return (
 		<IconButton
 			as={ChevronRightIcon}
@@ -87,9 +85,22 @@ const DemoPictures = () => {
 					// removeArrowOnDeviceType={["tablet", "mobile"]}
 					dotListClass="custom-dot-list-style"
 					itemClass="carousel-item-padding-40-px"
-					customLeftArrow={<CustomLeftArrow />}
-					customRightArrow={<CustomRightArrow />}>
-					{demoCards.map((card, index) => (
+					customLeftArrow={
+						<CustomLeftArrow
+							onClick={() => {
+								console.log('left arrow clicked');
+							}}
+						/>
+					}
+					customRightArrow={
+						<CustomRightArrow
+							onClick={() => {
+								console.log('right arrow clicked');
+							}}
+						/>
+					}>
+					Trying in Demo Pictures component.
+					{/* {demoCards?.map((card, index) => (
 						<VStack
 							key={index}
 							borderWidth="1px"
@@ -125,7 +136,7 @@ const DemoPictures = () => {
 								/>
 							</Box>
 						</VStack>
-					))}
+					))} */}
 				</Carousel>
 			</Box>
 		</Box>

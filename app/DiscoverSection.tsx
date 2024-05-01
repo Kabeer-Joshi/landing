@@ -1,6 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react';
 import React from 'react';
-import TextDetailsCards from '../../components/Homecards/TextDetailsCards';
+// import TextDetailsCards from '../../components/Homecards/TextDetailsCards';
+import TextDetailsCards from '@/components/Homecards/TextDetailsCards';
 import { RiAdminFill } from 'react-icons/ri';
 import { ImCheckmark } from 'react-icons/im';
 import { PiStudentFill } from 'react-icons/pi';

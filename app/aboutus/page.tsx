@@ -1,3 +1,4 @@
+'use client';
 import { Flex, Heading, Text } from '@chakra-ui/react';
 import { AboutUsData } from '../../data/data';
 import UserCard from './UserCard';

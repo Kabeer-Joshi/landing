@@ -1,10 +1,11 @@
+'use client';
 import { Button, Flex, Highlight, Text } from '@chakra-ui/react';
 import { Image } from '@chakra-ui/next-js';
 import { useState } from 'react';
 import { AiFillAndroid, AiFillApple } from 'react-icons/ai';
 //import HomeBanner from "../../assets/images/Homebanner.jpeg";
 import { Link } from '@chakra-ui/next-js';
-import HomeBanner from '../../assets/images/EasiestSchoolToManage.png';
+import HomeBanner from '@/assets/images/EasiestSchoolToManage.png';
 
 const HeadingSection = () => {
 	const [position, setPosition] = useState({ x: 0, y: 0 });

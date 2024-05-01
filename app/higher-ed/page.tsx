@@ -1,3 +1,5 @@
+'use client';
+
 import AppFeatureList from '../../components/AppFeatureList/AppFeatureList';
 //import InfiniteCarousel from "../Home/InfiniteCarousel";
 

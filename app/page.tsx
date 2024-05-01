@@ -1,3 +1,4 @@
+'use client';
 import HomeAccordian from '@/components/Accordian/HomeAccordian';
 import DiscoverSection from './DiscoverSection';
 import HeadingSection from './HeadingSection';

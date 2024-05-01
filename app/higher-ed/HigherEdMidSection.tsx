@@ -13,7 +13,12 @@ const HigherEdMidSection = () => {
 			direction={'column'}
 			gap={12}
 			my={12}>
-			<HEdCard1 {...HigherEdMidSectionData[0]} />
+			<HEdCard1
+				title={HigherEdMidSectionData[0].title}
+				description={HigherEdMidSectionData[0].description}
+				image={HigherEdMidSectionData[0].image}
+				points={HigherEdMidSectionData[0].points}
+			/>
 			<Flex
 				px={{ base: 3, lg: 24 }}
 				gap={16}
@@ -55,13 +60,6 @@ const HigherEdMidSection = () => {
 						w={500}
 						src={HigherEdMidSectionData[6].image}
 					/>
-					{/* <Flex pr={3} w={"full"} justify={"flex-end"} align={"end"}>
-						{" "}
-						<Button bg="brand.100" color={"white"}>
-							{" "}
-							Explore More
-						</Button>
-					</Flex> */}
 				</Flex>
 			</Flex>
 		</Flex>

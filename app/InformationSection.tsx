@@ -13,7 +13,7 @@ import {
 import { Image } from '@chakra-ui/next-js';
 import React from 'react';
 // import { informationData } from "../../data/data";
-import InformationDetailsCard from '../../components/Homecards/InformationDetailsCard';
+
 import Tab1Img from '../../assets/images/Tab1Img.png';
 import { homeMidSectionTabData } from '@/data/data';
 
