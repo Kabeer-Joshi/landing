@@ -47,7 +47,7 @@ const Form = () => {
 		message: '',
 	});
 	// State for form errors
-	const [formErrors, setFormErrors] = useState({
+	const [formErrors, setFormErrors] = useState<Record<string, string>>({
 		name: '',
 		email: '',
 		phone: '',
@@ -143,10 +143,13 @@ const Form = () => {
 
 	const validateForm = () => {
 		let isValid = true;
-		let errors = {};
+		let errors: Record<string, string> = {};
 
 		for (let field in formData) {
-			let error = validateSingleField(field, formData[field]);
+			let error = validateSingleField(
+				field,
+				formData[field as keyof typeof formData]
+			);
 			if (error) {
 				errors[field] = error;
 				isValid = false;
@@ -157,7 +160,7 @@ const Form = () => {
 		return isValid;
 	};
 
-	const sentToDataBase = async (formData) => {
+	const sentToDataBase = async (formData: any) => {
 		const response = await fetch(
 			'https://manageapi.goreeva.com/api/add-inquires/',
 			{
@@ -182,7 +185,7 @@ const Form = () => {
 		console.log(data);
 	};
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 		console.log('submitting');
 		if (validateForm()) {
@@ -268,7 +271,7 @@ const Form = () => {
 						<FormErrorMessage>{formErrors.name}</FormErrorMessage>
 					</FormControl>
 					{/* Email Field */}
-					<FormControl id="email" isRequired isInvalid={formErrors.email}>
+					<FormControl id="email" isRequired isInvalid={!!formErrors.email}>
 						<FormLabel fontSize="md">Email</FormLabel>
 						<InputGroup alignItems={'center'}>
 							<InputLeftElement pointerEvents="none" fontSize="md">
@@ -293,7 +296,7 @@ const Form = () => {
 					{/* Phone and Organization Type Fields */}
 					<Wrap spacing={6} w="100%">
 						<WrapItem flex="1">
-							<FormControl id="phone" isRequired isInvalid={formErrors.phone}>
+							<FormControl id="phone" isRequired isInvalid={!!formErrors.phone}>
 								<FormLabel fontSize="md">Phone Number</FormLabel>
 								<InputGroup>
 									<InputLeftElement pointerEvents="none" fontSize="md">
