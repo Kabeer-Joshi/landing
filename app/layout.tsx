@@ -1,10 +1,8 @@
+import LayoutWrapper from '@/components/wrappers/LayoutWrapper';
+import { Providers } from '@/providers/providers';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { Providers } from '@/providers/providers';
-import Navbar from '@/components/Navbar/Navbar';
-import Footer from '@/components/Footer/Footer';
-import { Flex } from '@chakra-ui/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,18 +20,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={inter.className}>
 				<Providers>
-					<Flex
-						minH={'6xl'}
-						direction={'column'}
-						justifyContent={'space-between'}>
-						<Flex w={'auto'} direction={'column'} minH={'auto'}>
-							<Navbar />
-							{children}
-						</Flex>
-
-						{/* This is Footer */}
-						<Footer />
-					</Flex>
+					<LayoutWrapper>{children}</LayoutWrapper>
 				</Providers>
 			</body>
 		</html>

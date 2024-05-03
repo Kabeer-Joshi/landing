@@ -52,9 +52,6 @@ const Navbar = () => {
 	const { navbarActiveLink, setNavbarActiveLink } = useContext(NavbarContext);
 	const params = useParams();
 
-	useEffect(() => {
-		console.log(location.pathname);
-	}, [location.pathname]);
 	return (
 		<>
 			<Flex

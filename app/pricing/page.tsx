@@ -1,9 +1,8 @@
-'use client';
-
+import MidSection from '@/components/Pricing/MidSection';
 import React from 'react';
 
 const page = () => {
-	return <div>page</div>;
+	return <MidSection />;
 };
 
 export default page;
